@@ -1,5 +1,5 @@
-import React from "react";
 import style from "./auth.module.css";
+import PropTypes from "prop-types";
 
 export const Auth = ({ auth }) => {
   return (
@@ -25,4 +25,8 @@ export const Auth = ({ auth }) => {
       )}
     </button>
   );
+};
+
+Auth.propTypes = {
+  auth: PropTypes.bool.isRequired,
 };

@@ -1,2 +1,2 @@
-import { Heading } from "./heading";
+import { Heading } from "./heading.jsx";
 export default Heading;
