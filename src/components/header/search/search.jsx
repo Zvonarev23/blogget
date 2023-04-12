@@ -1,4 +1,3 @@
-import React from "react";
 import style from "./search.module.css";
 
 export const Search = () => {
