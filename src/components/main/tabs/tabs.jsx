@@ -12,12 +12,13 @@ const LIST = [
   { value: "Главная", Icon: HomeIcon },
   { value: "Просмотренные", Icon: EyeIcon },
   { value: "Сохраненные", Icon: SaveIcon },
-  { value: "Моипосты", Icon: PostIcon },
+  { value: "Мои посты", Icon: PostIcon },
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(true);
+  const [currentListItem, setCurrentListItem] = useState("");
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 768) {
@@ -45,7 +46,7 @@ export const Tabs = () => {
             className={style.btn}
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            add item
+            {currentListItem}
             <ArrowIcon width={15} height={15} />
           </button>
         </div>
@@ -55,7 +56,10 @@ export const Tabs = () => {
         <ul onClick={() => setIsDropdownOpen(false)} className={style.list}>
           {LIST.map(({ value, id, Icon }) => (
             <li className={style.item} key={id}>
-              <button className={style.btn} onClick={() => {}}>
+              <button
+                className={style.btn}
+                onClick={() => setCurrentListItem(value)}
+              >
                 {value}
                 {Icon && <Icon width={30} height={30} />}
               </button>
