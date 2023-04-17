@@ -6,7 +6,7 @@ import Search from "./search/index.jsx";
 import Heading from "./heading/index.jsx";
 import PropTypes from "prop-types";
 
-export const Header = ({ token }) => {
+export const Header = ({ token, deleteToken }) => {
   return (
     <header className={style.header}>
       <Layout>
@@ -14,7 +14,7 @@ export const Header = ({ token }) => {
           <Logo />
           <Heading text="Главная" />
           <Search />
-          <Auth token={token} />
+          <Auth token={token} deleteToken={deleteToken} />
         </div>
       </Layout>
     </header>
@@ -23,4 +23,5 @@ export const Header = ({ token }) => {
 
 Header.propTypes = {
   token: PropTypes.string,
+  deleteToken: PropTypes.func,
 };

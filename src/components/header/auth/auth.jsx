@@ -6,8 +6,19 @@ import Text from "../../../ui/text/index.jsx";
 import { useEffect, useState } from "react";
 import { URL_API } from "../../../api/const.js";
 
-export const Auth = ({ token }) => {
+export const Auth = ({ token, deleteToken }) => {
   const [auth, setAuth] = useState({});
+  const [isShowLogout, setIsShowLogout] = useState(false);
+
+  const handleShowLogout = () => {
+    setIsShowLogout(!isShowLogout);
+  };
+
+  const handleLogout = () => {
+    deleteToken();
+    setAuth({});
+    setIsShowLogout(!isShowLogout);
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -17,13 +28,15 @@ export const Auth = ({ token }) => {
         Authorization: `bearer ${token}`,
       },
     })
-      .then((response) => response.json())
+      .then((response) =>
+        response.status !== 401 ? response.json() : deleteToken
+      )
       .then(({ name, icon_img }) => {
         const img = icon_img.replace(/\?.*$/, "");
         setAuth({ name, img });
       })
       .catch((err) => {
-        console.err(err);
+        console.log(err);
         setAuth({});
       });
   }, [token]);
@@ -31,7 +44,7 @@ export const Auth = ({ token }) => {
   return (
     <div className={style.container}>
       {auth.name ? (
-        <button className={style.btn}>
+        <button className={style.btn} onClick={handleShowLogout}>
           <img
             className={style.img}
             src={auth.img}
@@ -44,10 +57,16 @@ export const Auth = ({ token }) => {
           <LoginIcon className={style.svg} />
         </Text>
       )}
+      {isShowLogout && (
+        <button onClick={handleLogout} className={style.logout}>
+          Выйти
+        </button>
+      )}
     </div>
   );
 };
 
 Auth.propTypes = {
   token: PropTypes.string,
+  deleteToken: PropTypes.func,
 };

@@ -36,8 +36,6 @@
 
 .authLink {
   display: block;
-  width: 30px;
-  height: 30px;
   outline: 2px solid transparent;
   border-radius: 50%;
   outline-offset: 2px;

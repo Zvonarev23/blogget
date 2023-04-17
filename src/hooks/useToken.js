@@ -22,5 +22,10 @@ export const useToken = (state) => {
     }
   }, [token]);
 
-  return [token];
+  const deleteToken = () => {
+    localStorage.clear();
+    // history.go(-2);
+  };
+
+  return [token, deleteToken];
 };
