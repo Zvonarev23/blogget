@@ -1,19 +1,16 @@
 import Header from "./components/header/index.jsx";
 import Main from "./components/main/index.jsx";
-import { AuthContextProvider } from "./context/auth-context.js";
-import { TokenContext } from "./context/token-context.js";
-import { useToken } from "./hooks/use-token.js";
+import { AuthContextProvider } from "./context/auth-context.jsx";
+import { TokenContextProvider } from "./context/token-context.jsx";
 
 function App() {
-  const [token, deleteToken] = useToken("");
-
   return (
-    <TokenContext.Provider value={{ token, deleteToken }}>
+    <TokenContextProvider>
       <AuthContextProvider>
         <Header />
         <Main />
       </AuthContextProvider>
-    </TokenContext.Provider>
+    </TokenContextProvider>
   );
 }
 

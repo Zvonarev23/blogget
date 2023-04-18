@@ -3,8 +3,8 @@ import { ReactComponent as LoginIcon } from "./img/login.svg";
 import { urlAuth } from "../../../api/auth.js";
 import Text from "../../../ui/text/index.jsx";
 import { useState, useContext } from "react";
-import { TokenContext } from "../../../context/token-context.js";
-import { AuthContext } from "../../../context/auth-context";
+import { TokenContext } from "../../../context/token-context.jsx";
+import { AuthContext } from "../../../context/auth-context.jsx";
 
 export const Auth = () => {
   const { deleteToken } = useContext(TokenContext);
