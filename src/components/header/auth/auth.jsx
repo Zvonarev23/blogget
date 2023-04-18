@@ -3,13 +3,13 @@ import { ReactComponent as LoginIcon } from "./img/login.svg";
 import { urlAuth } from "../../../api/auth.js";
 import Text from "../../../ui/text/index.jsx";
 import { useState, useContext } from "react";
-import { useAuth } from "../../../hooks/use-auth.js";
 import { TokenContext } from "../../../context/token-context.js";
+import { AuthContext } from "../../../context/auth-context";
 
 export const Auth = () => {
   const { deleteToken } = useContext(TokenContext);
-  const [auth, clearAuth] = useAuth();
   const [isShowLogout, setIsShowLogout] = useState(false);
+  const { auth, clearAuth } = useContext(AuthContext);
 
   const handleShowLogout = () => {
     setIsShowLogout(!isShowLogout);
