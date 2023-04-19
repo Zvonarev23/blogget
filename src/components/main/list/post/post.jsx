@@ -5,12 +5,16 @@ import { formatDate } from "../../../../utils/formatDate";
 import { ReactComponent as DeleteIcon } from "./img/delete.svg";
 import Text from "../../../../ui/text/index.jsx";
 
-export const Post = ({ postData }) => {
-  const { title, author, ups, date } = postData;
+export const Post = ({ post }) => {
+  const { title, author, ups, created, thumbnail } = post;
 
   return (
     <li className={style.post}>
-      <img className={style.img} src={notphoto} alt={title} />
+      <img
+        className={style.img}
+        src={thumbnail ? thumbnail : notphoto}
+        alt={title}
+      />
       <div className={style.content}>
         <Text As="h2" className={style.title}>
           <Text
@@ -41,8 +45,8 @@ export const Post = ({ postData }) => {
         <button className={style.down} aria-label="Понизить рейтинг"></button>
       </div>
 
-      <time className={style.date} dateTime={date}>
-        {formatDate(date)}
+      <time className={style.date} dateTime={created}>
+        {formatDate(created)}
       </time>
 
       <button className={style.delete}>
@@ -53,5 +57,5 @@ export const Post = ({ postData }) => {
 };
 
 Post.propTypes = {
-  postData: PropTypes.object,
+  post: PropTypes.object,
 };
